@@ -10,7 +10,7 @@ where:
     -h              show this help text
     add <string>    add a new task to the task list
     remove <number> remove the number-th task of the list
-    show            show the whole task olist
+    show            show the whole task list
     clear           clear the whole task list"
 
 tasks_file="$HOME/sttm/tasks"
