@@ -7,11 +7,12 @@
 usage="Usage: $(basename "$0")  [-h] add <string>|remove <number>|show|clear
 
 where:
-    -h              show this help text
-    add <string>    add a new task to the task list
-    remove <number> remove the number-th task of the list
-    show            show the whole task list
-    clear           clear the whole task list"
+    -h                      show this help text
+    add <string>            add a new task to the task list
+    edit <number> <string>  edit the number-th task of the list
+    remove <number>         remove the number-th task of the list
+    show                    show the whole task list
+    clear                   clear the whole task list"
 
 tasks_file="$HOME/sttm/tasks"
 
@@ -32,6 +33,26 @@ case "$1" in
 	    exit 1
 	else
 	    echo "${@:2}" >> $tasks_file
+	fi
+	exit
+	;;
+
+    edit)
+	if [ $# -lt 3 ]; then
+	    echo "$usage"
+	    exit 1
+	else
+	    re='^[0-9]+$'
+	    d='d'
+	    rest="${@:3}"
+	    if [[ $2 =~ $re ]] && [ $2 -le $(wc -l < $tasks_file) ]; then
+		# sed -i "$2$d" $tasks_file
+		sed -i "$2s/.*/$rest/" $tasks_file
+		exit
+	    else
+		echo "$usage"
+		exit 1
+	    fi
 	fi
 	exit
 	;;
