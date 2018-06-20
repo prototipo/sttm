@@ -41,3 +41,4 @@ $ rt <number> # Removes the number-th task
 $ st # Show all tasks
 $ ct # Clear all tasks
 ```
+Remember to change the name of the tasks_sample file to tasks.
